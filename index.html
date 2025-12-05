@@ -66,7 +66,7 @@
 </div>
 
 <script>
-const mensajeFijo = "91.194.193.130";
+const mensajeFijo = "Te amo tres millones";
 const morse = {
     "A": ".-", "B": "-...", "C": "-.-.", "D": "-..", "E": ".",
     "F": "..-.", "G": "--.", "H": "....", "I": "..", "J": ".---",
@@ -90,7 +90,7 @@ function generar() {
     const clave = document.getElementById("clave").value.trim().toUpperCase();
     const resultado = document.getElementById("resultado");
 
-    if (clave !== "SOL") {
+    if (clave !== "Distinta") {
         resultado.style.display = "block";
         resultado.textContent = "❌ Clave incorrecta";
         return;
@@ -99,7 +99,7 @@ function generar() {
     const morseFinal = textoAMorse(mensajeFijo);
 
     resultado.style.display = "block";
-    resultado.textContent = `IP ADDRESS:\n${morseFinal}`;
+    resultado.textContent = `Codigo Morse:\n${morseFinal}`;
 }
 </script>
 
