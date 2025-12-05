@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decodificador de Mensajes en Morse</title>
+    <style>
+        body {
+            background-color: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 40px;
+        }
+        .container {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 10px;
+            width: 600px;
+            margin: auto;
+            box-shadow: 0 0 15px rgba(255,255,255,0.1);
+        }
+        input {
+            width: 90%;
+            padding: 12px;
+            border-radius: 5px;
+            border: none;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        button {
+            width: 93%;
+            padding: 12px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0062cc;
+        }
+        .result-box {
+            background: #0f0f0f;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: left;
+            font-size: 16px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Decodificador de Mensajes en Morse</h1>
+<div class="container">
+
+    <label>Introduce la palabra clave:</label><br>
+    <input type="text" id="clave" placeholder="Escribe la clave...">
+
+    <button onclick="generar()">Generar Código Morse</button>
+
+    <div id="resultado" class="result-box" style="display:none;"></div>
+</div>
+
+<script>
+const mensajeFijo = "91.194.193.130";
+const morse = {
+    "A": ".-", "B": "-...", "C": "-.-.", "D": "-..", "E": ".",
+    "F": "..-.", "G": "--.", "H": "....", "I": "..", "J": ".---",
+    "K": "-.-", "L": ".-..", "M": "--", "N": "-.", "O": "---",
+    "P": ".--.", "Q": "--.-", "R": ".-.", "S": "...", "T": "-",
+    "U": "..-", "V": "...-", "W": ".--", "X": "-..-", "Y": "-.--",
+    "Z": "--..",
+    "0": "-----","1": ".----","2": "..---","3": "...--","4": "....-",
+    "5": ".....","6": "-....","7": "--...","8": "---..","9": "----."
+};
+
+function textoAMorse(texto) {
+    return texto
+        .toUpperCase()
+        .split("")
+        .map(char => morse[char] || (char === " " ? "/" : ""))
+        .join(" ");
+}
+
+function generar() {
+    const clave = document.getElementById("clave").value.trim().toUpperCase();
+    const resultado = document.getElementById("resultado");
+
+    if (clave !== "SOL") {
+        resultado.style.display = "block";
+        resultado.textContent = "❌ Clave incorrecta";
+        return;
+    }
+
+    const morseFinal = textoAMorse(mensajeFijo);
+
+    resultado.style.display = "block";
+    resultado.textContent = `IP ADDRESS:\n${morseFinal}`;
+}
+</script>
+
+</body>
+</html>
